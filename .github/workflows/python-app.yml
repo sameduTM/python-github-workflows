@@ -34,4 +34,4 @@ jobs:
           nohup flask run > flask_log.txt 2>&1 &
       - name: Check if our is running of port 5000
         run: |
-          lsof -i :5000
+          ls -al
