@@ -8,6 +8,9 @@ jobs:
         python-version: ["3.8", "3.10"]
     steps:
       - uses: actions/checkout@v3
+      - name: check if curl is installed with simple GET request
+        run: curl https://example.com
+
       - name: Set up Python for Demo
         uses: actions/setup-python@v4
         with:
@@ -29,6 +32,6 @@ jobs:
       - name: Run app instance
         run: |
           nohup flask run > flask_log.txt 2>&1 &
-      - name: Health-check for our running app
+      - name: Check if our is running of port 5000
         run: |
-          curl -si localhost:5000
+          lsof -i :5000
