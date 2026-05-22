@@ -26,3 +26,9 @@ jobs:
           pip install pytest
           pip install pytest-cov
           pytest tests.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+      - name: Run app instance
+        run: |
+          nohup flask run > flask_log.txt 2>&1 &
+      - name: Health-check for our running app
+        run: |
+          curl -si localhost:5000
